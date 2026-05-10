@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <title>Nutritive Skills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .skill {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            background-color: #f9f9f9;
+        }
+        .skill summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .skill p {
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            main {
+                padding: 1rem;
+            }
+        }
+        footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        footer nav a {
+            margin: 0 0.5rem;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nutritive Skills</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Welcome to Nutritive Skills</h2>
+            <p>Learn essential skills for healthy eating and nutrition.</p>
+        </section>
+        <section class="skills-grid">
+            <div class="skill">
+                <details>
+                    <summary>Meal Planning</summary>
+                    <p>Plan balanced meals to ensure you get all necessary nutrients. Click to expand for tips!</p>
+                    <button onclick="alert('Tip: Include a variety of colors in your plate!')">Get a Tip</button>
+                </details>
+            </div>
+            <div class="skill">
+                <details>
+                    <summary>Cooking Techniques</summary>
+                    <p>Master basic cooking methods like steaming, grilling, and baking for healthier meals.</p>
+                    <button onclick="alert('Technique: Steaming preserves more nutrients than boiling.')">Learn Technique</button>
+                </details>
+            </div>
+            <div class="skill">
+                <details>
+                    <summary>Reading Labels</summary>
+                    <p>Understand food labels to make informed choices about ingredients and nutrition facts.</p>
+                    <button onclick="alert('Look for low sodium and high fiber options.')">Label Insight</button>
+                </details>
+            </div>
+            <div class="skill">
+                <details>
+                    <summary>Portion Control</summary>
+                    <p>Learn to control portions to maintain a healthy weight and avoid overeating.</p>
+                    <button onclick="alert('Use smaller plates to trick your mind into thinking you have more food.')">Portion Trick</button>
+                </details>
+            </div>
+        </section>
+        <section id="game" class="skill">
+            <h2>Nutrition Quiz Game</h2>
+            <p>Test your knowledge with this quick quiz!</p>
+            <div id="quiz-container">
+                <div id="question"></div>
+                <div id="options">
+                    <button id="option1" onclick="checkAnswer(0)"></button>
+                    <button id="option2" onclick="checkAnswer(1)"></button>
+                    <button id="option3" onclick="checkAnswer(2)"></button>
+                    <button id="option4" onclick="checkAnswer(3)"></button>
+                </div>
+                <div id="result"></div>
+                <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+                <div id="score">Score: 0</div>
+            </div>
+        </section>
+    </main>
+    <script>
+        const questions = [
+            {
+                question: "What is a good source of vitamin C?",
+                options: ["Banana", "Orange", "Bread", "Cheese"],
+                answer: 1
+            },
+            {
+                question: "Which food is high in protein?",
+                options: ["Apple", "Chicken", "Carrot", "Rice"],
+                answer: 1
+            },
+            {
+                question: "What should you drink to stay hydrated?",
+                options: ["Soda", "Water", "Coffee", "Alcohol"],
+                answer: 1
+            },
+            {
+                question: "Which is a healthy fat?",
+                options: ["Butter", "Avocado", "Candy", "Chips"],
+                answer: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question').textContent = q.question;
+            document.getElementById('option1').textContent = q.options[0];
+            document.getElementById('option2').textContent = q.options[1];
+            document.getElementById('option3').textContent = q.options[2];
+            document.getElementById('option4').textContent = q.options[3];
+            document.getElementById('result').textContent = '';
+            document.getElementById('next-btn').style.display = 'none';
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            if (selected === q.answer) {
+                document.getElementById('result').textContent = 'Correct!';
+                score++;
+            } else {
+                document.getElementById('result').textContent = 'Wrong! The correct answer is ' + q.options[q.answer];
+            }
+            document.getElementById('score').textContent = 'Score: ' + score;
+            document.getElementById('next-btn').style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').innerHTML = '<h3>Quiz Complete!</h3><p>Your final score: ' + score + '/' + questions.length + '</p><button onclick="restartQuiz()">Play Again</button>';
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz-container').innerHTML = `
+                <div id="question"></div>
+                <div id="options">
+                    <button id="option1" onclick="checkAnswer(0)"></button>
+                    <button id="option2" onclick="checkAnswer(1)"></button>
+                    <button id="option3" onclick="checkAnswer(2)"></button>
+                    <button id="option4" onclick="checkAnswer(3)"></button>
+                </div>
+                <div id="result"></div>
+                <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+                <div id="score">Score: 0</div>
+            `;
+            loadQuestion();
+        }
+
+        window.onload = loadQuestion;
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('ServiceWorker registered:', reg.scope))
+                    .catch(err => console.log('ServiceWorker registration failed:', err));
+            });
+        }
+    </script>
+    <footer>
+        <p>&copy; 2026 Minerva SASU. All rights reserved.</p>
+        <nav>
+            <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+</body>
+</html>

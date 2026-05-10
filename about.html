@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <title>About - Nutritive Skills</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            main {
+                padding: 1rem;
+            }
+        }
+        footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        footer nav a {
+            margin: 0 0.5rem;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Nutritive Skills</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>About Nutritive Skills</h2>
+        <p>Nutritive Skills is a platform dedicated to helping you develop essential skills for healthy eating and nutrition. Our goal is to empower individuals with knowledge and tools to make informed dietary choices, improve their well-being, and lead healthier lives.</p>
+        <p>Through interactive lessons, quizzes, and practical tips, we cover topics such as meal planning, cooking techniques, reading food labels, and portion control. Whether you're a beginner or looking to refine your skills, our resources are designed to be engaging and accessible.</p>
+        <p>Join us on this journey to better nutrition!</p>
+    </main>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('ServiceWorker registered:', reg.scope))
+                    .catch(err => console.log('ServiceWorker registration failed:', err));
+            });
+        }
+    </script>
+    <footer>
+        <p>&copy; 2026 Minerva SASU. All rights reserved.</p>
+        <nav>
+            <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+</body>
+</html>

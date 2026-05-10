@@ -1,0 +1,17 @@
+{
+  "name": "Nutritive Skills",
+  "short_name": "Nutritive",
+  "description": "Learn essential nutrition skills with an installable offline-friendly web app.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
