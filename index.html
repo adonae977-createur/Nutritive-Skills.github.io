@@ -14,18 +14,12 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background-color: #f4f8f5;
-            color: #1f3d2f;
         }
         header {
             background-color: #4CAF50;
             color: white;
             padding: 1rem;
             text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
         }
         nav ul {
             list-style: none;
@@ -34,264 +28,65 @@
             display: flex;
             justify-content: center;
             gap: 2rem;
-            flex-wrap: wrap;
         }
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
         }
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
-        .hero {
-            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
-            color: white;
-            border-radius: 0 0 24px 24px;
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: float 8s ease-in-out infinite;
-        }
-        .hero h2 {
-            max-width: 700px;
-            margin: 0 auto 1rem;
-            font-size: clamp(2rem, 3vw, 3rem);
-            letter-spacing: 0.02em;
-        }
-        .hero p {
-            max-width: 680px;
-            margin: 0 auto 1.5rem;
-            opacity: 0.96;
-            font-size: 1.05rem;
-        }
-        .hero button {
-            background-color: white;
-            color: #4CAF50;
-            border: none;
-            border-radius: 999px;
-            padding: 0.9rem 1.8rem;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .hero button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.16);
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .feature-card,
-        .skill {
-            background-color: white;
-            border-radius: 16px;
-            padding: 1.4rem;
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(76, 175, 80, 0.15);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        .feature-card:hover,
-        .skill:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 18px 32px rgba(0, 0, 0, 0.12);
-        }
-        .feature-card h3,
-        .skill summary {
-            color: #2f6f31;
-        }
-        .feature-card p,
-        .skill p {
-            margin-top: 0.75rem;
-        }
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
-            margin-bottom: 2rem;
         }
-        .skills-grid h2 {
-            grid-column: 1 / -1;
-            margin-bottom: 1rem;
-            color: #1f422d;
-        }
-        .skill details {
-            transition: all 0.3s ease;
-        }
-        .skill details[open] {
-            transform: scale(1.02);
-            box-shadow: 0 20px 32px rgba(0, 0, 0, 0.15);
-        }
-        .skill button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 0.6rem 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 0.5rem;
-        }
-        .skill button:hover {
-            background-color: #3b9a3d;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        .skill .interactive-content {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: #f9fff8;
-            border-radius: 8px;
-            border: 1px solid rgba(76, 175, 80, 0.2);
-            display: none;
-        }
-        .skill .interactive-content.show {
-            display: block;
-            animation: slideDown 0.5s ease;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .emoji-animation {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            z-index: 1000;
-            pointer-events: none;
-            animation: emojiPop 1s ease-out;
-        }
-        @keyframes emojiPop {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1) translateY(-100px); }
-        }
-        .progress-emoji {
-            display: inline-block;
-            animation: bounce 1s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .hydration-calc input {
-            width: 100%;
-            padding: 0.5rem;
-            margin: 0.5rem 0;
+        .skill {
             border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .plate-model {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 1rem;
-        }
-        .plate-section {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin: 0 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            animation: pulse 2s infinite;
-        }
-        .plate-section:nth-child(1) { background-color: #8BC34A; } /* Veggies */
-        .plate-section:nth-child(2) { background-color: #FFC107; animation-delay: 0.5s; } /* Grains */
-        .plate-section:nth-child(3) { background-color: #FF5722; animation-delay: 1s; } /* Protein */
-        .plate-section:nth-child(4) { background-color: #9C27B0; animation-delay: 1.5s; } /* Fruits */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        .snack-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        .snack-item {
-            background-color: #e8f7e8;
-            padding: 0.5rem;
             border-radius: 8px;
-            text-align: center;
-            transition: transform 0.2s ease;
-        }
-        .snack-item:hover {
-            transform: translateY(-3px);
-            background-color: #d4f0d4;
+            padding: 1rem;
+            background-color: #f9f9f9;
         }
         .skill summary {
             cursor: pointer;
             font-weight: bold;
+            color: #4CAF50;
         }
-        .quiz-grid {
-            display: grid;
-            gap: 1.5rem;
+        .skill p {
+            margin-top: 0.5rem;
         }
-        #quiz-container {
-            background: linear-gradient(180deg, rgba(255,255,255,0.98), #f9fff8);
-            padding: 1.5rem;
-            border-radius: 18px;
-            border: 1px solid rgba(76, 175, 80, 0.12);
-        }
-        #options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-        #options button {
-            background-color: #fff;
-            border: 1px solid rgba(76, 175, 80, 0.25);
-            color: #2f4d32;
-            border-radius: 12px;
-            padding: 0.9rem 1rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            min-height: 58px;
-        }
-        #options button:hover {
-            background-color: #e8f7e8;
-            transform: translateY(-2px);
-        }
-        #next-btn {
-            margin-top: 1rem;
-            padding: 0.9rem 1.2rem;
-            border: none;
-            border-radius: 999px;
+        .quiz-btn {
             background-color: #4CAF50;
             color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        #next-btn:hover {
-            background-color: #3b9a3d;
+        .quiz-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
         }
-        #score {
-            margin-top: 1rem;
-            font-weight: bold;
+        .quiz-btn:active {
+            transform: scale(0.95);
         }
-        .fade-section {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
+        .correct {
+            animation: bounce 0.6s;
         }
         @media (max-width: 768px) {
             nav ul {
@@ -301,185 +96,110 @@
             main {
                 padding: 1rem;
             }
-            .hero {
-                padding: 2rem 1.2rem;
-            }
         }
-        footer {
-            background-color: #f4f4f4;
-            text-align: center;
+        #news article {
+            margin-bottom: 1rem;
             padding: 1rem;
-            margin-top: 2rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         footer nav a {
             margin: 0 0.5rem;
             color: #4CAF50;
             text-decoration: none;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-7px); }
-        }
     </style>
 </head>
 <body>
-    <div id="emoji-container"></div>
     <header>
-        <img src="logo.svg" alt="Nutritive Skills Logo" style="vertical-align: middle; margin-right: 0.5rem;">
-        <h1>Nutritive Skills FOR ALL FOR FREE </h1>
-    
+        <h1>Nutritive Skills For ALL FREE</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
+                <li><a href="about.html">About us</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="diabetes.html">Diabetes Programs</a></li>
+                <li><a href="lessons.html">Quick Lessons</a></li>
+                <li><a href="dashboard.html">Progress Dashboard</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section class="hero fade-section">
-            <p style="text-transform: uppercase; letter-spacing: 0.2em; opacity: 0.88; margin-bottom: 1rem;">Healthy nutrition made simple</p>
-            <h2>Build better eating habits with fun, guided learning.</h2>
-            <p>Explore free lessons, practical tips, and interactive tools designed to help you choose nourishing meals and feel your best.</p>
-            <button onclick="document.getElementById('skills').scrollIntoView({ behavior: 'smooth' })">Explore Skills</button>
+        <section id="home">
+            <h2>Welcome to Nutritive Skills</h2>
+            <p>Learn essential skills for healthy eating and nutrition.</p>
+            <p><em>A project by Minerva SASU, dedicated to promoting healthy lifestyles through education and fun.</em></p>
         </section>
-        <section class="feature-grid fade-section">
-            <div class="feature-card">
-                <h3>Quick guidance</h3>
-                <p>Easy-to-follow tips that help you shop smarter, cook healthier, and enjoy food more.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Interactive learning</h3>
-                <p>Try our mini quiz and learn from each answer while building confidence in nutrition.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Everyday habits</h3>
-                <p>Simple routines for portion control, label reading, and balanced meal planning.</p>
-            </div>
+        <section id="news">
+            <h2>Latest News</h2>
+            <article>
+                <h3>New Nutrition Guidelines Released</h3>
+                <p>Stay updated with the latest dietary recommendations from health experts. Learn how to incorporate more fruits and vegetables into your diet.</p>
+                <time datetime="2026-05-01">May 1, 2026</time>
+            </article>
+            <article>
+                <h3>Interactive Cooking Workshop</h3>
+                <p>Join our virtual workshop on healthy cooking techniques. Discover easy ways to prepare nutritious meals at home.</p>
+                <time datetime="2026-04-15">April 15, 2026</time>
+            </article>
+            <article>
+                <h3>Minerva SASU's Commitment to Wellness</h3>
+                <p>As a society focused on holistic health, Minerva SASU continues to innovate in nutrition education, bringing you engaging tools and resources.</p>
+                <time datetime="2026-03-20">March 20, 2026</time>
+            </article>
         </section>
-        <section class="skills-grid fade-section" id="skills">
-            <h2>Featured learning topics</h2>
+        <section class="skills-grid">
             <div class="skill">
                 <details>
                     <summary>Meal Planning</summary>
                     <p>Plan balanced meals to ensure you get all necessary nutrients. Click to expand for tips!</p>
-                    <button onclick="toggleContent('meal-planning-content')">Get a Tip</button>
-                    <div id="meal-planning-content" class="interactive-content">
-                        <p><strong>Tip:</strong> Include a variety of colors in your plate for diverse nutrients!</p>
-                        <p>Try planning meals around seasonal produce for better flavor and nutrition.</p>
-                    </div>
+                    <button onclick="alert('Tip: Include a variety of colors in your plate!')">Get a Tip</button>
                 </details>
             </div>
             <div class="skill">
                 <details>
                     <summary>Cooking Techniques</summary>
                     <p>Master basic cooking methods like steaming, grilling, and baking for healthier meals.</p>
-                    <button onclick="toggleContent('cooking-content')">Learn Technique</button>
-                    <div id="cooking-content" class="interactive-content">
-                        <p><strong>Technique:</strong> Steaming preserves more nutrients than boiling.</p>
-                        <p>Experiment with herbs and spices to reduce salt while boosting flavor.</p>
-                    </div>
+                    <button onclick="alert('Technique: Steaming preserves more nutrients than boiling.')">Learn Technique</button>
                 </details>
             </div>
             <div class="skill">
                 <details>
                     <summary>Reading Labels</summary>
                     <p>Understand food labels to make informed choices about ingredients and nutrition facts.</p>
-                    <button onclick="toggleContent('label-content')">Label Insight</button>
-                    <div id="label-content" class="interactive-content">
-                        <p><strong>Insight:</strong> Look for low sodium and high fiber options.</p>
-                        <p>Check serving sizes to compare products accurately.</p>
-                    </div>
+                    <button onclick="alert('Look for low sodium and high fiber options.')">Label Insight</button>
                 </details>
             </div>
             <div class="skill">
                 <details>
                     <summary>Portion Control</summary>
                     <p>Learn to control portions to maintain a healthy weight and avoid overeating.</p>
-                    <button onclick="toggleContent('portion-content')">Portion Trick</button>
-                    <div id="portion-content" class="interactive-content">
-                        <p><strong>Trick:</strong> Use smaller plates to trick your mind into thinking you have more food.</p>
-                        <p>Eat slowly and savor each bite to recognize fullness cues.</p>
-                    </div>
-                </details>
-            </div>
-            <div class="skill">
-                <details>
-                    <summary>Hydration</summary>
-                    <p>Stay hydrated for better energy, digestion, and overall health.</p>
-                    <button onclick="toggleContent('hydration-content')">Calculate Intake</button>
-                    <div id="hydration-content" class="interactive-content">
-                        <p>Daily water needs vary by activity level and climate.</p>
-                        <div class="hydration-calc">
-                            <label for="weight">Weight (kg):</label>
-                            <input type="number" id="weight" placeholder="70">
-                            <button onclick="calculateWater()">Calculate</button>
-                            <p id="water-result"></p>
-                        </div>
-                    </div>
-                </details>
-            </div>
-            <div class="skill">
-                <details>
-                    <summary>Balanced Diet</summary>
-                    <p>Learn about the components of a balanced plate for optimal nutrition.</p>
-                    <button onclick="toggleContent('balanced-content')">View Plate Model</button>
-                    <div id="balanced-content" class="interactive-content">
-                        <p>Fill half your plate with vegetables, a quarter with grains, and a quarter with protein.</p>
-                        <div class="plate-model">
-                            <div class="plate-section">Veggies<br>50%</div>
-                            <div class="plate-section">Grains<br>25%</div>
-                            <div class="plate-section">Protein<br>25%</div>
-                            <div class="plate-section">Fruits<br>Side</div>
-                        </div>
-                    </div>
-                </details>
-            </div>
-            <div class="skill">
-                <details>
-                    <summary>Healthy Snacking</summary>
-                    <p>Choose nutritious snacks to maintain energy between meals.</p>
-                    <button onclick="toggleContent('snack-content')">Explore Snacks</button>
-                    <div id="snack-content" class="interactive-content">
-                        <p>Opt for snacks with protein, fiber, and healthy fats.</p>
-                        <div class="snack-list">
-                            <div class="snack-item">Apple + Almonds</div>
-                            <div class="snack-item">Greek Yogurt</div>
-                            <div class="snack-item">Carrot Sticks</div>
-                            <div class="snack-item">Trail Mix</div>
-                            <div class="snack-item">Banana</div>
-                            <div class="snack-item">Cheese Stick</div>
-                        </div>
-                    </div>
-                </details>
-            </div>
-            <div class="skill">
-                <details>
-                    <summary>Mindful Eating</summary>
-                    <p>Practice mindful eating to improve digestion and enjoyment of food.</p>
-                    <button onclick="toggleContent('mindful-content')">Start Practice</button>
-                    <div id="mindful-content" class="interactive-content">
-                        <p>Take a deep breath before eating and focus on the taste and texture.</p>
-                        <button onclick="startBreathingExercise()">Breathing Exercise</button>
-                        <p id="breathing-instruction"></p>
-                    </div>
+                    <button onclick="alert('Use smaller plates to trick your mind into thinking you have more food.')">Portion Trick</button>
                 </details>
             </div>
         </section>
-        <section id="game" class="skill fade-section">
+        <section id="game" class="skill">
             <h2>Nutrition Quiz Game</h2>
-            <p>Test your knowledge with a quick quiz and learn new healthy habits along the way.</p>
+            <p>Test your knowledge with this quick quiz! Levels: Easy, Medium, Hard.</p>
             <div id="quiz-container">
+                <div id="level">Level: Easy</div>
                 <div id="question"></div>
                 <div id="options">
-                    <button id="option1" onclick="checkAnswer(0)"></button>
-                    <button id="option2" onclick="checkAnswer(1)"></button>
-                    <button id="option3" onclick="checkAnswer(2)"></button>
-                    <button id="option4" onclick="checkAnswer(3)"></button>
+                    <button id="option1" onclick="checkAnswer(0)" class="quiz-btn"></button>
+                    <button id="option2" onclick="checkAnswer(1)" class="quiz-btn"></button>
+                    <button id="option3" onclick="checkAnswer(2)" class="quiz-btn"></button>
+                    <button id="option4" onclick="checkAnswer(3)" class="quiz-btn"></button>
                 </div>
                 <div id="result"></div>
                 <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
                 <div id="score">Score: 0</div>
+                <div id="progress">Question 1 of 10</div>
             </div>
         </section>
     </main>
@@ -488,90 +208,95 @@
             {
                 question: "What is a good source of vitamin C?",
                 options: ["Banana", "Orange", "Bread", "Cheese"],
-                answer: 1
+                answer: 1,
+                level: "easy"
             },
             {
                 question: "Which food is high in protein?",
                 options: ["Apple", "Chicken", "Carrot", "Rice"],
-                answer: 1
+                answer: 1,
+                level: "easy"
             },
             {
                 question: "What should you drink to stay hydrated?",
                 options: ["Soda", "Water", "Coffee", "Alcohol"],
-                answer: 1
+                answer: 1,
+                level: "easy"
             },
             {
                 question: "Which is a healthy fat?",
                 options: ["Butter", "Avocado", "Candy", "Chips"],
-                answer: 1
+                answer: 1,
+                level: "easy"
+            },
+            {
+                question: "What mineral is important for strong bones?",
+                options: ["Iron", "Calcium", "Zinc", "Potassium"],
+                answer: 1,
+                level: "medium"
+            },
+            {
+                question: "Which grain is whole grain?",
+                options: ["White rice", "Brown rice", "Corn flakes", "Pasta"],
+                answer: 1,
+                level: "medium"
+            },
+            {
+                question: "What is the recommended daily intake of fruits and vegetables?",
+                options: ["1-2 servings", "3-5 servings", "6-8 servings", "9-10 servings"],
+                answer: 1,
+                level: "medium"
+            },
+            {
+                question: "Which vitamin is produced when skin is exposed to sunlight?",
+                options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+                answer: 3,
+                level: "hard"
+            },
+            {
+                question: "What is the main function of carbohydrates in the body?",
+                options: ["Build muscles", "Provide energy", "Regulate hormones", "Fight infections"],
+                answer: 1,
+                level: "hard"
+            },
+            {
+                question: "Which nutrient helps in blood clotting?",
+                options: ["Vitamin K", "Vitamin E", "Iron", "Folic Acid"],
+                answer: 0,
+                level: "hard"
             }
         ];
 
         let currentQuestion = 0;
         let score = 0;
 
-        // Cache DOM elements for efficiency
-        const quizElements = {
-            question: null,
-            option1: null,
-            option2: null,
-            option3: null,
-            option4: null,
-            result: null,
-            nextBtn: null,
-            score: null,
-            container: null
-        };
-
-        const quizTemplate = `
-            <div id="question"></div>
-            <div id="options">
-                <button id="option1" onclick="checkAnswer(0)"></button>
-                <button id="option2" onclick="checkAnswer(1)"></button>
-                <button id="option3" onclick="checkAnswer(2)"></button>
-                <button id="option4" onclick="checkAnswer(3)"></button>
-            </div>
-            <div id="result"></div>
-            <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
-            <div id="score">Score: 0</div>
-        `;
-
         function loadQuestion() {
-            if (!quizElements.question) cacheQuizElements();
             const q = questions[currentQuestion];
-            quizElements.question.textContent = q.question;
-            quizElements.option1.textContent = q.options[0];
-            quizElements.option2.textContent = q.options[1];
-            quizElements.option3.textContent = q.options[2];
-            quizElements.option4.textContent = q.options[3];
-            quizElements.result.textContent = '';
-            quizElements.nextBtn.style.display = 'none';
-        }
-
-        function cacheQuizElements() {
-            quizElements.question = document.getElementById('question');
-            quizElements.option1 = document.getElementById('option1');
-            quizElements.option2 = document.getElementById('option2');
-            quizElements.option3 = document.getElementById('option3');
-            quizElements.option4 = document.getElementById('option4');
-            quizElements.result = document.getElementById('result');
-            quizElements.nextBtn = document.getElementById('next-btn');
-            quizElements.score = document.getElementById('score');
-            quizElements.container = document.getElementById('quiz-container');
+            document.getElementById('question').textContent = q.question;
+            document.getElementById('level').textContent = 'Level: ' + q.level.charAt(0).toUpperCase() + q.level.slice(1);
+            document.getElementById('option1').textContent = q.options[0];
+            document.getElementById('option2').textContent = q.options[1];
+            document.getElementById('option3').textContent = q.options[2];
+            document.getElementById('option4').textContent = q.options[3];
+            document.getElementById('result').textContent = '';
+            document.getElementById('next-btn').style.display = 'none';
+            document.getElementById('progress').textContent = 'Question ' + (currentQuestion + 1) + ' of ' + questions.length;
         }
 
         function checkAnswer(selected) {
             const q = questions[currentQuestion];
+            const scoreEl = document.getElementById('score');
             if (selected === q.answer) {
-                quizElements.result.textContent = 'Correct! 🎉';
+                document.getElementById('result').textContent = 'Correct!';
                 score++;
-                showEmoji('🎉');
+                scoreEl.textContent = 'Score: ' + score;
+                scoreEl.classList.add('correct');
+                setTimeout(() => scoreEl.classList.remove('correct'), 600);
             } else {
-                quizElements.result.textContent = 'Wrong! The correct answer is ' + q.options[q.answer] + ' 😅';
-                showEmoji('😅');
+                document.getElementById('result').textContent = 'Wrong! The correct answer is ' + q.options[q.answer];
+                scoreEl.textContent = 'Score: ' + score;
             }
-            quizElements.score.textContent = 'Score: ' + score;
-            quizElements.nextBtn.style.display = 'block';
+            document.getElementById('next-btn').style.display = 'block';
         }
 
         function nextQuestion() {
@@ -579,93 +304,31 @@
             if (currentQuestion < questions.length) {
                 loadQuestion();
             } else {
-                quizElements.container.innerHTML = '<h3>Quiz Complete!</h3><p>Your final score: ' + score + '/' + questions.length + '</p><button onclick="restartQuiz()">Play Again</button>';
+                document.getElementById('quiz-container').innerHTML = '<h3>Quiz Complete!</h3><p>Your final score: ' + score + '/' + questions.length + '</p><button onclick="restartQuiz()">Play Again</button>';
             }
         }
 
         function restartQuiz() {
             currentQuestion = 0;
             score = 0;
-            quizElements.container.innerHTML = quizTemplate;
-            cacheQuizElements(); // Recache after DOM update
+            document.getElementById('quiz-container').innerHTML = `
+                <div id="level">Level: Easy</div>
+                <div id="question"></div>
+                <div id="options">
+                    <button id="option1" onclick="checkAnswer(0)" class="quiz-btn"></button>
+                    <button id="option2" onclick="checkAnswer(1)" class="quiz-btn"></button>
+                    <button id="option3" onclick="checkAnswer(2)" class="quiz-btn"></button>
+                    <button id="option4" onclick="checkAnswer(3)" class="quiz-btn"></button>
+                </div>
+                <div id="result"></div>
+                <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+                <div id="score">Score: 0</div>
+                <div id="progress">Question 1 of 10</div>
+            `;
             loadQuestion();
         }
 
-        function revealSections() {
-            const sections = document.querySelectorAll('.fade-section:not(.observed)');
-            const observer = new IntersectionObserver((entries, observerRef) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible', 'observed');
-                        observerRef.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            sections.forEach(section => observer.observe(section));
-        }
-
-        function toggleContent(contentId) {
-            const content = document.getElementById(contentId);
-            content.classList.toggle('show');
-            if (content.classList.contains('show')) {
-                showEmoji('💡');
-            }
-        }
-
-        function calculateWater() {
-            const weight = document.getElementById('weight').value;
-            if (weight) {
-                const waterIntake = weight * 0.03; // Rough estimate: 30ml per kg
-                document.getElementById('water-result').textContent = `Recommended daily water intake: ${waterIntake.toFixed(1)} liters 💧`;
-                showEmoji('💧');
-            } else {
-                document.getElementById('water-result').textContent = 'Please enter your weight. 🤔';
-                showEmoji('🤔');
-            }
-        }
-
-        function startBreathingExercise() {
-            const instruction = document.getElementById('breathing-instruction');
-            const steps = [
-                { text: 'Breathe in slowly for 4 seconds... 🌬️', emoji: '🌬️', delay: 0 },
-                { text: 'Hold for 4 seconds... 😌', emoji: null, delay: 4000 },
-                { text: 'Breathe out slowly for 4 seconds... 🌬️', emoji: null, delay: 8000 },
-                { text: 'Repeat as needed. Focus on your meal. 🍽️', emoji: null, delay: 12000 }
-            ];
-
-            steps.forEach(step => {
-                setTimeout(() => {
-                    instruction.textContent = step.text;
-                    if (step.emoji) showEmoji(step.emoji);
-                }, step.delay);
-            });
-        }
-
-        const emojiPool = [];
-        const MAX_POOL_SIZE = 5;
-
-        function showEmoji(emoji) {
-            let emojiDiv = emojiPool.pop();
-            if (!emojiDiv) {
-                emojiDiv = document.createElement('div');
-                emojiDiv.className = 'emoji-animation';
-            }
-            emojiDiv.textContent = emoji;
-            const container = document.getElementById('emoji-container');
-            container.appendChild(emojiDiv);
-            setTimeout(() => {
-                container.removeChild(emojiDiv);
-                if (emojiPool.length < MAX_POOL_SIZE) {
-                    emojiPool.push(emojiDiv);
-                }
-            }, 1000);
-        }
-
-        window.onload = () => {
-            loadQuestion();
-            revealSections();
-        };
+        window.onload = loadQuestion;
     </script>
     <script>
         if ('serviceWorker' in navigator) {
@@ -679,7 +342,7 @@
     <footer>
         <p>&copy; 2026 Minerva SASU. All rights reserved.</p>
         <nav>
-            <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+            <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="diabetes.html">Diabetes Programs</a> | <a href="lessons.html">Quick Lessons</a> | <a href="dashboard.html">Progress Dashboard</a>
         </nav>
     </footer>
 </body>
