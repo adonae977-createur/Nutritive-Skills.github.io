@@ -159,6 +159,30 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .emoji-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            z-index: 1000;
+            pointer-events: none;
+            animation: emojiPop 1s ease-out;
+        }
+        @keyframes emojiPop {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1) translateY(-100px); }
+        }
+        .progress-emoji {
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
         .hydration-calc input {
             width: 100%;
             padding: 0.5rem;
@@ -299,6 +323,7 @@
     </style>
 </head>
 <body>
+    <div id="emoji-container"></div>
     <header>
         <img src="logo.svg" alt="Nutritive Skills Logo" style="vertical-align: middle; margin-right: 0.5rem;">
         <h1>Nutritive Skills FOR ALL FOR FREE </h1>
@@ -499,10 +524,12 @@
         function checkAnswer(selected) {
             const q = questions[currentQuestion];
             if (selected === q.answer) {
-                document.getElementById('result').textContent = 'Correct!';
+                document.getElementById('result').textContent = 'Correct! 🎉';
                 score++;
+                showEmoji('🎉');
             } else {
-                document.getElementById('result').textContent = 'Wrong! The correct answer is ' + q.options[q.answer];
+                document.getElementById('result').textContent = 'Wrong! The correct answer is ' + q.options[q.answer] + ' 😅';
+                showEmoji('😅');
             }
             document.getElementById('score').textContent = 'Score: ' + score;
             document.getElementById('next-btn').style.display = 'block';
@@ -552,24 +579,39 @@
         function toggleContent(contentId) {
             const content = document.getElementById(contentId);
             content.classList.toggle('show');
+            if (content.classList.contains('show')) {
+                showEmoji('💡');
+            }
         }
 
         function calculateWater() {
             const weight = document.getElementById('weight').value;
             if (weight) {
                 const waterIntake = weight * 0.03; // Rough estimate: 30ml per kg
-                document.getElementById('water-result').textContent = `Recommended daily water intake: ${waterIntake.toFixed(1)} liters`;
+                document.getElementById('water-result').textContent = `Recommended daily water intake: ${waterIntake.toFixed(1)} liters 💧`;
+                showEmoji('💧');
             } else {
-                document.getElementById('water-result').textContent = 'Please enter your weight.';
+                document.getElementById('water-result').textContent = 'Please enter your weight. 🤔';
+                showEmoji('🤔');
             }
         }
 
         function startBreathingExercise() {
             const instruction = document.getElementById('breathing-instruction');
-            instruction.textContent = 'Breathe in slowly for 4 seconds...';
-            setTimeout(() => instruction.textContent = 'Hold for 4 seconds...', 4000);
-            setTimeout(() => instruction.textContent = 'Breathe out slowly for 4 seconds...', 8000);
-            setTimeout(() => instruction.textContent = 'Repeat as needed. Focus on your meal.', 12000);
+            instruction.textContent = 'Breathe in slowly for 4 seconds... 🌬️';
+            showEmoji('🌬️');
+            setTimeout(() => instruction.textContent = 'Hold for 4 seconds... 😌', 4000);
+            setTimeout(() => instruction.textContent = 'Breathe out slowly for 4 seconds... 🌬️', 8000);
+            setTimeout(() => instruction.textContent = 'Repeat as needed. Focus on your meal. 🍽️', 12000);
+        }
+
+        function showEmoji(emoji) {
+            const container = document.getElementById('emoji-container');
+            const emojiDiv = document.createElement('div');
+            emojiDiv.className = 'emoji-animation';
+            emojiDiv.textContent = emoji;
+            container.appendChild(emojiDiv);
+            setTimeout(() => container.removeChild(emojiDiv), 1000);
         }
 
         window.onload = () => {
