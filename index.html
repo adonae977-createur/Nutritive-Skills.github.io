@@ -510,29 +510,68 @@
         let currentQuestion = 0;
         let score = 0;
 
+        // Cache DOM elements for efficiency
+        const quizElements = {
+            question: null,
+            option1: null,
+            option2: null,
+            option3: null,
+            option4: null,
+            result: null,
+            nextBtn: null,
+            score: null,
+            container: null
+        };
+
+        const quizTemplate = `
+            <div id="question"></div>
+            <div id="options">
+                <button id="option1" onclick="checkAnswer(0)"></button>
+                <button id="option2" onclick="checkAnswer(1)"></button>
+                <button id="option3" onclick="checkAnswer(2)"></button>
+                <button id="option4" onclick="checkAnswer(3)"></button>
+            </div>
+            <div id="result"></div>
+            <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
+            <div id="score">Score: 0</div>
+        `;
+
         function loadQuestion() {
+            if (!quizElements.question) cacheQuizElements();
             const q = questions[currentQuestion];
-            document.getElementById('question').textContent = q.question;
-            document.getElementById('option1').textContent = q.options[0];
-            document.getElementById('option2').textContent = q.options[1];
-            document.getElementById('option3').textContent = q.options[2];
-            document.getElementById('option4').textContent = q.options[3];
-            document.getElementById('result').textContent = '';
-            document.getElementById('next-btn').style.display = 'none';
+            quizElements.question.textContent = q.question;
+            quizElements.option1.textContent = q.options[0];
+            quizElements.option2.textContent = q.options[1];
+            quizElements.option3.textContent = q.options[2];
+            quizElements.option4.textContent = q.options[3];
+            quizElements.result.textContent = '';
+            quizElements.nextBtn.style.display = 'none';
+        }
+
+        function cacheQuizElements() {
+            quizElements.question = document.getElementById('question');
+            quizElements.option1 = document.getElementById('option1');
+            quizElements.option2 = document.getElementById('option2');
+            quizElements.option3 = document.getElementById('option3');
+            quizElements.option4 = document.getElementById('option4');
+            quizElements.result = document.getElementById('result');
+            quizElements.nextBtn = document.getElementById('next-btn');
+            quizElements.score = document.getElementById('score');
+            quizElements.container = document.getElementById('quiz-container');
         }
 
         function checkAnswer(selected) {
             const q = questions[currentQuestion];
             if (selected === q.answer) {
-                document.getElementById('result').textContent = 'Correct! 🎉';
+                quizElements.result.textContent = 'Correct! 🎉';
                 score++;
                 showEmoji('🎉');
             } else {
-                document.getElementById('result').textContent = 'Wrong! The correct answer is ' + q.options[q.answer] + ' 😅';
+                quizElements.result.textContent = 'Wrong! The correct answer is ' + q.options[q.answer] + ' 😅';
                 showEmoji('😅');
             }
-            document.getElementById('score').textContent = 'Score: ' + score;
-            document.getElementById('next-btn').style.display = 'block';
+            quizElements.score.textContent = 'Score: ' + score;
+            quizElements.nextBtn.style.display = 'block';
         }
 
         function nextQuestion() {
@@ -540,34 +579,24 @@
             if (currentQuestion < questions.length) {
                 loadQuestion();
             } else {
-                document.getElementById('quiz-container').innerHTML = '<h3>Quiz Complete!</h3><p>Your final score: ' + score + '/' + questions.length + '</p><button onclick="restartQuiz()">Play Again</button>';
+                quizElements.container.innerHTML = '<h3>Quiz Complete!</h3><p>Your final score: ' + score + '/' + questions.length + '</p><button onclick="restartQuiz()">Play Again</button>';
             }
         }
 
         function restartQuiz() {
             currentQuestion = 0;
             score = 0;
-            document.getElementById('quiz-container').innerHTML = `
-                <div id="question"></div>
-                <div id="options">
-                    <button id="option1" onclick="checkAnswer(0)"></button>
-                    <button id="option2" onclick="checkAnswer(1)"></button>
-                    <button id="option3" onclick="checkAnswer(2)"></button>
-                    <button id="option4" onclick="checkAnswer(3)"></button>
-                </div>
-                <div id="result"></div>
-                <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Question</button>
-                <div id="score">Score: 0</div>
-            `;
+            quizElements.container.innerHTML = quizTemplate;
+            cacheQuizElements(); // Recache after DOM update
             loadQuestion();
         }
 
         function revealSections() {
-            const sections = document.querySelectorAll('.fade-section');
+            const sections = document.querySelectorAll('.fade-section:not(.observed)');
             const observer = new IntersectionObserver((entries, observerRef) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+                        entry.target.classList.add('visible', 'observed');
                         observerRef.unobserve(entry.target);
                     }
                 });
@@ -598,20 +627,39 @@
 
         function startBreathingExercise() {
             const instruction = document.getElementById('breathing-instruction');
-            instruction.textContent = 'Breathe in slowly for 4 seconds... 🌬️';
-            showEmoji('🌬️');
-            setTimeout(() => instruction.textContent = 'Hold for 4 seconds... 😌', 4000);
-            setTimeout(() => instruction.textContent = 'Breathe out slowly for 4 seconds... 🌬️', 8000);
-            setTimeout(() => instruction.textContent = 'Repeat as needed. Focus on your meal. 🍽️', 12000);
+            const steps = [
+                { text: 'Breathe in slowly for 4 seconds... 🌬️', emoji: '🌬️', delay: 0 },
+                { text: 'Hold for 4 seconds... 😌', emoji: null, delay: 4000 },
+                { text: 'Breathe out slowly for 4 seconds... 🌬️', emoji: null, delay: 8000 },
+                { text: 'Repeat as needed. Focus on your meal. 🍽️', emoji: null, delay: 12000 }
+            ];
+
+            steps.forEach(step => {
+                setTimeout(() => {
+                    instruction.textContent = step.text;
+                    if (step.emoji) showEmoji(step.emoji);
+                }, step.delay);
+            });
         }
 
+        const emojiPool = [];
+        const MAX_POOL_SIZE = 5;
+
         function showEmoji(emoji) {
-            const container = document.getElementById('emoji-container');
-            const emojiDiv = document.createElement('div');
-            emojiDiv.className = 'emoji-animation';
+            let emojiDiv = emojiPool.pop();
+            if (!emojiDiv) {
+                emojiDiv = document.createElement('div');
+                emojiDiv.className = 'emoji-animation';
+            }
             emojiDiv.textContent = emoji;
+            const container = document.getElementById('emoji-container');
             container.appendChild(emojiDiv);
-            setTimeout(() => container.removeChild(emojiDiv), 1000);
+            setTimeout(() => {
+                container.removeChild(emojiDiv);
+                if (emojiPool.length < MAX_POOL_SIZE) {
+                    emojiPool.push(emojiDiv);
+                }
+            }, 1000);
         }
 
         window.onload = () => {
