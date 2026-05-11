@@ -4,170 +4,293 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4CAF50">
+    <meta name="theme-color" content="#2D6A4F">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon.svg">
-    <title>About - Nutritive Skills</title>
+    <title>About Nutritive</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
-            background-color: #f4f8f5;
-            color: #1f3d2f;
+            box-sizing: border-box;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8faf7;
+        }
+        
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%);
             color: white;
-            padding: 1rem;
-            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.15);
             position: sticky;
             top: 0;
-            z-index: 10;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            z-index: 100;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
+        
+        .header-content {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
+            transition: color 0.3s;
         }
+        
+        nav a:hover {
+            color: #D8F3DC;
+        }
+        
         main {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
-        .about-grid {
+        
+        .page-title {
+            font-size: 2rem;
+            color: #2D6A4F;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .about-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+        
+        .about-section h2 {
+            color: #2D6A4F;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .about-section p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
-        .about-card {
-            background-color: white;
-            border-radius: 18px;
-            padding: 1.5rem;
-            border: 1px solid rgba(76, 175, 80, 0.18);
-            box-shadow: 0 14px 26px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        
+        .feature-box {
+            background: linear-gradient(135deg, #40916C 0%, #52B788 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
         }
-        .about-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 30px rgba(0, 0, 0, 0.1);
+        
+        .feature-box .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
-        .about-card h3 {
-            color: #2f6f31;
-            margin-top: 0;
+        
+        .feature-box h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
-        .fade-section {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        
+        .feature-box p {
+            opacity: 0.9;
+            color: white;
         }
-        .visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        footer {
+            background: #f8faf7;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 4rem;
         }
+        
+        footer a {
+            color: #2D6A4F;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-item {
+            text-align: center;
+            text-decoration: none;
+            color: #999;
+            transition: color 0.3s;
+            padding: 0.75rem 1rem;
+            flex: 1;
+        }
+        
+        .nav-item:hover {
+            color: #40916C;
+        }
+        
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: 80px;
             }
             main {
-                padding: 1rem;
+                padding: 0 1rem;
             }
-        }
-        footer {
-            background-color: #f4f4f4;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-        footer nav a {
-            margin: 0 0.5rem;
-            color: #4CAF50;
-            text-decoration: none;
+            .about-section {
+                padding: 2rem 1.5rem;
+            }
+            nav {
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Nutritive Skills</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="header-content">
+            <div class="logo">🥗 Nutritive</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <section class="fade-section">
-            <h2>About Nutritive Skills</h2>
-            <p>Nutritive Skills is a platform dedicated to helping you develop essential skills for healthy eating and nutrition. Our goal is to empower individuals with knowledge and tools to make informed dietary choices, improve their well-being, and lead healthier lives.</p>
-        </section>
-        <section class="about-grid fade-section">
-            <div class="about-card">
-                <h3>Our mission</h3>
-                <p>Make nutrition education welcoming, practical, and available to everyone—no matter your experience in the kitchen.</p>
+        <h1 class="page-title">About Nutritive</h1>
+        
+        <div class="about-section">
+            <h2>Our Mission</h2>
+            <p>Nutritive is dedicated to empowering individuals with essential skills for healthy eating and nutrition. We believe that knowledge is power – when you understand nutrition, you can make informed choices that lead to a healthier, happier life.</p>
+            <p>Our mission is to make nutrition education accessible, engaging, and practical for everyone. Whether you're just starting your health journey or looking to refine your skills, we're here to support you every step of the way.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="icon">📚</div>
+                <h3>Expert Knowledge</h3>
+                <p>Learn from nutrition professionals with practical, evidence-based information.</p>
             </div>
-            <div class="about-card">
-                <h3>What we teach</h3>
-                <p>Meal planning, healthy cooking techniques, label reading, portion control, and simple ways to build better daily habits.</p>
+            <div class="feature-box">
+                <div class="icon">🎯</div>
+                <h3>Goal-Oriented</h3>
+                <p>Set and achieve personalized nutrition and health goals with our guidance.</p>
             </div>
-            <div class="about-card">
-                <h3>Why it works</h3>
-                <p>Small changes add up. We help you take confident steps with clear explanations, helpful examples, and fun interactions.</p>
+            <div class="feature-box">
+                <div class="icon">📱</div>
+                <h3>Always Accessible</h3>
+                <p>Access our platform anytime, anywhere – works offline too!</p>
             </div>
-        </section>
-        <section class="fade-section">
-            <h3>How we support you</h3>
-            <p>Through interactive lessons, quizzes, and practical tips, we create an engaging learning experience that helps you apply nutrition knowledge in everyday life.</p>
-            <ul>
-                <li>Simple explanations for real-world food choices</li>
-                <li>Practical tips for shopping, cooking, and portion control</li>
-                <li>Support for healthy habits that last</li>
+        </div>
+
+        <div class="about-section">
+            <h2>What We Offer</h2>
+            <p><strong>Interactive Lessons:</strong> Comprehensive courses on meal planning, cooking techniques, label reading, and portion control.</p>
+            <p><strong>Progress Tracking:</strong> Monitor your nutrition journey with detailed dashboards and insights.</p>
+            <p><strong>Daily Tips:</strong> Receive personalized nutrition tips and health recommendations.</p>
+            <p><strong>Specialized Programs:</strong> Dedicated resources for specific health conditions like diabetes.</p>
+            <p><strong>Free & Accessible:</strong> All our content is completely free and designed to be understood by everyone.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Why Choose Nutritive?</h2>
+            <ul style="font-size: 1.05rem; color: #666; line-height: 2;">
+                <li style="margin-bottom: 1rem;">✓ <strong>Comprehensive Content:</strong> From basics to advanced nutrition topics</li>
+                <li style="margin-bottom: 1rem;">✓ <strong>Practical Skills:</strong> Learn techniques you can use immediately</li>
+                <li style="margin-bottom: 1rem;">✓ <strong>Interactive Learning:</strong> Engage with quizzes and real-world scenarios</li>
+                <li style="margin-bottom: 1rem;">✓ <strong>Mobile-Friendly:</strong> Perfect for learning on the go</li>
+                <li style="margin-bottom: 1rem;">✓ <strong>Community-Focused:</strong> Join thousands on their health journey</li>
+                <li style="margin-bottom: 1rem;">✓ <strong>Continuous Updates:</strong> New content and improvements regularly</li>
             </ul>
-        </section>
+        </div>
+
+        <div class="about-section" style="background: linear-gradient(135deg, #40916C 0%, #52B788 100%); color: white;">
+            <h2 style="color: white;">Created by Minerva SASU</h2>
+            <p>Nutritive is a project by Minerva SASU, a society dedicated to promoting healthy lifestyles through education and innovation. We believe in making quality health information accessible to everyone.</p>
+            <p style="margin-top: 1.5rem; font-style: italic;">Join us on the journey to better nutrition and healthier living!</p>
+        </div>
     </main>
+
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <div style="font-size: 1.5rem;">🏠</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Home</div>
+        </a>
+        <a href="lessons.html" class="nav-item">
+            <div style="font-size: 1.5rem;">📚</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Lessons</div>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+            <div style="font-size: 1.5rem;">📊</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Dashboard</div>
+        </a>
+        <a href="contact.html" class="nav-item">
+            <div style="font-size: 1.5rem;">👤</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Profile</div>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nutritive. All rights reserved.</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="diabetes.html">Diabetes Programs</a>
+        </nav>
+    </footer>
+
     <script>
-        function revealSections() {
-            const sections = document.querySelectorAll('.fade-section');
-            const observer = new IntersectionObserver((entries, observerRef) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observerRef.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15 });
-
-            sections.forEach(section => observer.observe(section));
-        }
-
-        window.addEventListener('load', () => {
-            revealSections();
-            if ('serviceWorker' in navigator) {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js')
                     .then(reg => console.log('ServiceWorker registered:', reg.scope))
                     .catch(err => console.log('ServiceWorker registration failed:', err));
-            }
-        });
+            });
+        }
     </script>
-    <footer>
-        <p>&copy; 2026 Minerva SASU. All rights reserved.</p>
-        <nav>
-            <a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
-        </nav>
-    </footer>
 </body>
 </html>
