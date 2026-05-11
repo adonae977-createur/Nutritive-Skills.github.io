@@ -5,14 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offline - Nutritive Skills</title>
     <style>
-        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 2rem; background: #f4f4f4; color: #333; text-align: center; }
-        a { color: #4CAF50; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 2rem; background: linear-gradient(180deg, #eef8f1 0%, #f4f4f4 100%); color: #1f3d2f; text-align: center; }
+        .offline-card { max-width: 640px; padding: 2rem; background: white; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); border: 1px solid rgba(76, 175, 80, 0.18); }
+        h1 { margin-top: 0; color: #2f6f31; }
+        p { line-height: 1.8; margin: 1rem 0; }
+        .actions { margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+        .actions a { background-color: #4CAF50; color: white; padding: 0.9rem 1.4rem; border-radius: 999px; text-decoration: none; transition: background-color 0.2s ease; }
+        .actions a:hover { background-color: #3b9a3d; }
+        ul { text-align: left; margin: 1rem auto 0; max-width: 520px; padding-left: 1.2rem; }
+        li { margin-bottom: 0.6rem; }
     </style>
 </head>
 <body>
-    <h1>Offline mode</h1>
-    <p>You are offline, but Nutritive Skills is still available.</p>
-    <p><a href="index.html">Return to the homepage</a></p>
+    <div class="offline-card">
+        <h1>You're offline, but you're still connected to Nutritive Skills</h1>
+        <p>This page is cached so you can keep reading your nutrition tips even without an internet connection. Use the links below to visit stored pages and keep learning while offline.</p>
+        <ul>
+            <li>Browse the cached homepage for quick nutrition ideas</li>
+            <li>Read the About page to remember our mission</li>
+            <li>Return to the Contact page when you are back online</li>
+        </ul>
+        <div class="actions">
+            <a href="index.html">Go to Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
 </body>
 </html>
