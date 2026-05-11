@@ -4,80 +4,428 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#4CAF50">
+    <meta name="theme-color" content="#2D6A4F">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon.svg">
-    <title>Progress Dashboard - Nutritive Skills</title>
+    <title>Dashboard - Your Nutrition Insights</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            background-color: #f5f5f5;
+            color: #333;
+            background-color: #f8faf7;
         }
+        
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, #2D6A4F 0%, #40916C 100%);
             color: white;
-            padding: 1rem;
-            text-align: center;
-            animation: slideInFromTop 1s ease-out;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(45, 106, 79, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        @keyframes slideInFromTop {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 1rem 0 0 0;
+        
+        .header-content {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav {
+            display: flex;
             gap: 2rem;
         }
+        
         nav a {
             color: white;
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s;
         }
+        
         nav a:hover {
-            color: #e8f5e8;
+            color: #D8F3DC;
         }
+        
         main {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #2D6A4F;
+            margin-bottom: 2rem;
+        }
+        
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem;
         }
+        
         .dashboard-card {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
         }
+        
         .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(45, 106, 79, 0.15);
         }
+        
         .dashboard-card h3 {
-            color: #4CAF50;
-            margin-top: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            color: #2D6A4F;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
+        
         .progress-circle {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            background: conic-gradient(#4CAF50 0% var(--progress), #ddd var(--progress) 100%);
+            background: conic-gradient(#40916C 0% calc(var(--progress) * 1%), #f0f0f0 calc(var(--progress) * 1%) 100%);
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin: 1rem auto;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2D6A4F;
+        }
+        
+        .progress-label {
+            text-align: center;
+            color: #666;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+        
+        .stat-value {
+            font-weight: 600;
+            color: #2D6A4F;
+            font-size: 1.1rem;
+        }
+        
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .chart-label {
+            width: 60px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .chart-fill {
+            flex: 1;
+            height: 30px;
+            background: linear-gradient(90deg, #40916C 0%, #52B788 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .insights-section {
+            background: linear-gradient(135deg, #40916C 0%, #52B788 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .insights-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .insight-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #FFB703;
+        }
+        
+        .insight-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .insight-item p {
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background-color: #FFB703;
+            color: #2D6A4F;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #FFC520;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: #f8faf7;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: #2D6A4F;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-item {
+            text-align: center;
+            text-decoration: none;
+            color: #999;
+            transition: color 0.3s;
+            padding: 0.75rem 1rem;
+            flex: 1;
+        }
+        
+        .nav-item:hover {
+            color: #40916C;
+        }
+        
+        @media (max-width: 768px) {
+            .bottom-nav {
+                display: flex;
+            }
+            body {
+                padding-bottom: 80px;
+            }
+            main {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">🥗 Nutritive</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="lessons.html">Lessons</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title">Your Progress Dashboard</h1>
+        
+        <!-- Main Stats -->
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>Daily Calorie Intake</h3>
+                <div class="progress-circle" style="--progress: 76.5;">1530</div>
+                <div class="progress-label">of 2000 kcal</div>
+                <div style="margin-top: 1rem;">
+                    <div class="stat-item">
+                        <span class="stat-label">Breakfast</span>
+                        <span class="stat-value">420 kcal</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Lunch</span>
+                        <span class="stat-value">650 kcal</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Dinner</span>
+                        <span class="stat-value">460 kcal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Weekly Progress</h3>
+                <div class="chart-bar">
+                    <span class="chart-label">Mon</span>
+                    <div class="chart-fill" style="width: 85%;">2040</div>
+                </div>
+                <div class="chart-bar">
+                    <span class="chart-label">Tue</span>
+                    <div class="chart-fill" style="width: 80%;">1920</div>
+                </div>
+                <div class="chart-bar">
+                    <span class="chart-label">Wed</span>
+                    <div class="chart-fill" style="width: 75%;">1800</div>
+                </div>
+                <div class="chart-bar">
+                    <span class="chart-label">Thu</span>
+                    <div class="chart-fill" style="width: 82%;">1960</div>
+                </div>
+                <div class="chart-bar">
+                    <span class="chart-label">Fri</span>
+                    <div class="chart-fill" style="width: 76.5%;">1840</div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Macro Nutrients</h3>
+                <div class="stat-item">
+                    <span class="stat-label">🥩 Proteins</span>
+                    <span class="stat-value">45g</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🍞 Carbs</span>
+                    <span class="stat-value">180g</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🥑 Fats</span>
+                    <span class="stat-value">52g</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">🥗 Fiber</span>
+                    <span class="stat-value">28g</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insights Section -->
+        <div class="insights-section">
+            <h2>💡 Today's Insights</h2>
+            <div class="insight-item">
+                <h4>Great Job on Your Water Intake!</h4>
+                <p>You've consumed 8 glasses of water today. Keep it up to stay hydrated!</p>
+            </div>
+            <div class="insight-item">
+                <h4>Tip: Increase Your Vegetable Intake</h4>
+                <p>You're doing great! Consider adding one more serving of vegetables to reach the recommended daily intake of 5+ servings.</p>
+            </div>
+            <div class="insight-item">
+                <h4>Weekly Goal Progress: 87%</h4>
+                <p>You're on track to meet your weekly nutrition goals. Keep maintaining your healthy eating habits!</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h3>Recent Food Logs</h3>
+                <div class="stat-item">
+                    <span>🥦 Broccoli Salad</span>
+                    <span class="stat-value">350 kcal</span>
+                </div>
+                <div class="stat-item">
+                    <span>🍗 Grilled Chicken</span>
+                    <span class="stat-value">280 kcal</span>
+                </div>
+                <div class="stat-item">
+                    <span>🥕 Orange Juice</span>
+                    <span class="stat-value">120 kcal</span>
+                </div>
+                <button class="cta-button" style="width: 100%; margin-top: 1rem;">Add Food Entry</button>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Health Goals</h3>
+                <div class="progress-circle" style="--progress: 92;">92%</div>
+                <div class="progress-label">Goal Progress</div>
+                <p style="text-align: center; margin-top: 1rem; color: #666;">Keep tracking your meals and achieving your fitness goals!</p>
+            </div>
+        </div>
+    </main>
+
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <div style="font-size: 1.5rem;">🏠</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Home</div>
+        </a>
+        <a href="lessons.html" class="nav-item">
+            <div style="font-size: 1.5rem;">📚</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Lessons</div>
+        </a>
+        <a href="dashboard.html" class="nav-item">
+            <div style="font-size: 1.5rem;">📊</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Dashboard</div>
+        </a>
+        <a href="contact.html" class="nav-item">
+            <div style="font-size: 1.5rem;">👤</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Profile</div>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nutritive. All rights reserved.</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="diabetes.html">Diabetes Programs</a>
+        </nav>
+    </footer>
+</body>
+</html>
             justify-content: center;
             margin: 1rem auto;
             position: relative;
